@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Quest")
+@Table(name = "quest")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -16,12 +16,13 @@ public class QuestEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
-    private Integer content;
-    private Integer image;
-    private String id_difficulty;
-    private String id_user;
+    @Column(length = 10000)
+    private String content;
+    private String image;
+    private Integer id_difficulty;
+    private Integer id_user;
 
-    public QuestEntity(String title, Integer content, Integer image, String id_difficulty, String id_user) {
+    public QuestEntity(String title, String content, String image, Integer id_difficulty, Integer id_user) {
         this.title = title;
         this.content = content;
         this.image = image;

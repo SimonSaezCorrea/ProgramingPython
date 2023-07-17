@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Test_Quest")
+@Table(name = "test_quest")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class TestQuestEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Integer id_test;
     private Integer id_quest;
     private Integer qualification;
