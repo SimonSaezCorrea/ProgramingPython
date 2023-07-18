@@ -1,0 +1,146 @@
+/* {
+    background-color: honeydew;
+}*/
+
+.contenedor-datos {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin-left: 21%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.izq {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+}
+
+.der {
+    display: relative;
+    justify-content: space-between;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------------- */
+
+.izq-arr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+}
+
+.izq-aba {
+    margin-left: 100px;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------------- */
+
+.izq-arr-izq {
+    width: 40%;
+    height: 100%;
+}
+
+.izq-arr-der {
+    width: 60%;
+    height: 100%;
+}
+
+/* ---------------- */
+
+.izq-arr-izq .dato {
+    display: flex;
+    flex-direction: column;
+}
+
+.izq-arr-izq .dato label {
+    color: rgb(4, 15, 27);
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+/* ---------------- */
+
+.izq-arr-der .text {
+    display: flex;
+    flex-direction: column;
+}
+
+.izq-arr-der .text input {
+    background-color: rgb(8, 30, 53);
+    color: rgb(185, 185, 185);
+    font-size: 30px;
+    width: 300px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 25px;
+    margin-top: 48px;
+    border: 0px solid;
+}
+
+/* ---------------- */
+/* ---------------- */
+/* ---------------- */
+
+.input-container {
+    display: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container input {
+    background-color: rgb(8, 30, 53);
+    color: rgb(185, 185, 185);
+    font-size: 20px;
+    width: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    border: 0px solid;
+}
+.input-container label {
+    color: rgb(4, 15, 27);
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    margin-right: 10px;
+    border: 0px solid;
+}
+
+.input-container button{
+    margin-bottom: 20px;
+    margin-left: 5px;
+    border-radius: 10px;
+    width: 50px;
+    height: 30px;
+    background-color: rgb(59, 121, 255);
+    border: 1px rgb(3, 22, 46) solid;
+}
+
+.input-container button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* ----------------- */
+/* ----------------- */
+/* ----------------- */
+
+.der .bloque-imagen {
+    position: absolute;
+    width: 160px;
+    height: 200px;
+    background-color: rgb(8, 30, 53);;
+}
