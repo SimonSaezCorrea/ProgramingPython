@@ -9,7 +9,4 @@ import java.util.List;
 
 @Repository
 public interface TestRepository extends JpaRepository<TestEntity, Integer> {
-
-    @Query("SELECT e FROM TestEntity e WHERE e.id_user = :id_user")
-    List<TestEntity> getByIdUser(@Param("id_user") Integer id_user);
 }

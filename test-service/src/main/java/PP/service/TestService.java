@@ -33,8 +33,4 @@ public class TestService {
         return testRepository.save(testEntity);
     }
 
-    public List<TestEntity> getByIdUser(Integer id_user){
-        List<TestEntity> testEntities = testRepository.getByIdUser(id_user);
-        return testEntities;
-    }
 }

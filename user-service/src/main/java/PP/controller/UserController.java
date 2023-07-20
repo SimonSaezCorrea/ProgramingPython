@@ -44,4 +44,18 @@ public class UserController {
         UserEntity userEntity = userService.delete(id);
         return ResponseEntity.ok(userEntity);
     }
+
+    @GetMapping("/connect")
+    public ResponseEntity<List<UserEntity>> getConnect() {
+        List<UserEntity> userEntitie = userService.getConnect();
+        userEntitie.stream().forEach((e)->{
+            System.out.println("id: " + e.getId());
+            System.out.println("name: " + e.getName());
+            System.out.println("password: " + e.getPassword());
+            System.out.println("correo: " + e.getCorreo());
+            System.out.println("connect: " + e.getConnect());
+            System.out.println("--------------------");
+        });
+        return ResponseEntity.ok(userEntitie);
+    }
 }

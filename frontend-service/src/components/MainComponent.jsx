@@ -1,14 +1,25 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import LateralComponent from "./Headers/LateralComponent";
 import "../styles/sidebar.css";
 import "../styles/main.css";
+import UserService from "../services/UserService";
 
 function MainComponents() {
+    const initialState = {
+        userEntity: [],
+    };
+    const [input, setInput] = useState(initialState);
+    useEffect(() => {
+        UserService.getConnect().then((res) => {
+            setInput({ ...input, userEntity: res.data }); // Actualizar el estado correctamente
+        });
+    }, []);
+
     const navigate = useNavigate();
     const handleClickTestSucefull = () => {
         navigate("/test-sucefull");
-    }
+    };
     return (
         <div>
             <LateralComponent></LateralComponent>
@@ -23,28 +34,34 @@ function MainComponents() {
                             </div>
                         </div>
                         <div class="izq-arr-der">
-                            <div class="text">
-                                <input type="text" readOnly></input>
-                                <input type="text" readOnly></input>
-                            </div>
+                            {input.userEntity.map((userEntity) => (
+                                <div class="text" key={userEntity.id}>
+                                    <input type="text" readOnly value={userEntity.name}></input>
+                                    <input type="text" readOnly value={userEntity.correo}></input>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div class="izq-aba">
-                            <div className="input-container">
-                                <label>Fácil:</label>
-                                <input class="text" type="text" readOnly/>
-                                <button onClick={handleClickTestSucefull}>Ver</button>
+                        {input.userEntity.map((userEntity) => (
+                            <div class="text" key={userEntity.id}>
+                                <div className="input-container">
+                                    <label>Fácil:</label>
+                                    <input class="text" type="text" readOnly value={userEntity.test_easy}/>
+                                    <button onClick={handleClickTestSucefull}>Ver</button>
+                                </div>
+                                <div className="input-container">
+                                    <label>Intermedio:</label>
+                                    <input class="text" type="text" readOnly value={userEntity.test_medium}/>
+                                    <button onClick={handleClickTestSucefull}>Ver</button>
+                                </div>
+                                <div className="input-container">
+                                    <label>Difícil:</label>
+                                    <input class="text" type="text" readOnly value={userEntity.test_hard}/>
+                                    <button onClick={handleClickTestSucefull}>Ver</button>
+                                </div>
                             </div>
-                            <div className="input-container">
-                                <label>Intermedio:</label>
-                                <input class="text" type="text" readOnly/>
-                                <button onClick={handleClickTestSucefull}>Ver</button>
-                            </div>
-                            <div className="input-container">
-                                <label>Difícil:</label>
-                                <input class="text" type="text" readOnly/>
-                                <button onClick={handleClickTestSucefull}>Ver</button>
-                            </div>
+                        ))}
                     </div>
                 </div>
                 <div class="der">

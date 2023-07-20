@@ -6,18 +6,18 @@ insert into difficulty (id, score, title) values (3, 3, 'Difícil');
 
 -- Quest
 
-insert into quest (id, content, id_difficulty, id_user, image, title) values (1, '-', 1, 5 ,'preg-1.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (2, '-', 1, 5 ,'preg-2.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (3, '-', 1, 5 ,'preg-3.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (4, '-', 1, 5 ,'preg-4.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (5, '-', 2, 1 ,'preg-5.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (6, '-', 2, 1 ,'preg-6.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (7, '-', 2, 1 ,'preg-7.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (8, '-', 2, 1 ,'preg-8.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (9, '-', 3, 9 ,'preg-9.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (10, '-', 3, 9 ,'preg-10.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (11, '-', 3, 2 ,'preg-11.jpg', 'Pregunta ???');
-insert into quest (id, content, id_difficulty, id_user, image, title) values (12, '-', 3, 1 ,'preg-12.jpg', 'Pregunta ???');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (1, '-', 1, 5 ,'preg-1.png', 'Pregunta ???', '19');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (2, '-', 1, 5 ,'preg-2.png', 'Pregunta ???', '16');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (3, '-', 1, 5 ,'preg-3.png', 'Pregunta ???', '13');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (4, '-', 1, 5 ,'preg-4.png', 'Pregunta ???', '6');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (5, '-', 2, 1 ,'preg-5.png', 'Pregunta ???', '-70');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (6, '-', 2, 1 ,'preg-6.png', 'Pregunta ???', '292');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (7, '-', 2, 1 ,'preg-7.png', 'Pregunta ???', '36');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (8, '-', 2, 1 ,'preg-8.png', 'Pregunta ???', '568');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (9, '-', 3, 9 ,'preg-9.png', 'Pregunta ???', '17');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (10, '-', 3, 9 ,'preg-10.png', 'Pregunta ???', 'Aa/b%cHaWbScAaSb/c&a!b');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (11, '-', 3, 2 ,'preg-11.png', 'Pregunta ???', 'Aaa');
+insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (12, '-', 3, 1 ,'preg-12.png', 'Pregunta ???', '233');
 
 -- Test
 

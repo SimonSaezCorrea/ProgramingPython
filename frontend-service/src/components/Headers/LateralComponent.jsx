@@ -6,7 +6,13 @@ function HeaderComponent() {
     const handleClickMain = () => {
         navigate("/home");
     }
-    const handleClickTest = () => {
+    const handleClickTestFacil = () => {
+        navigate("/test");
+    }
+    const handleClickTestIntermedio = () => {
+        navigate("/test");
+    }
+    const handleClickTestDificil = () => {
         navigate("/test");
     }
     return (
@@ -19,9 +25,9 @@ function HeaderComponent() {
                     <div class="contenedores-test">
                         <div class="test">
                             <label> Test </label>
-                            <button onClick={handleClickTest}>Fácil</button>
-                            <button onClick={handleClickTest}>Intermedio</button>
-                            <button onClick={handleClickTest}>Difícil</button>
+                            <button onClick={handleClickTestFacil}>Fácil</button>
+                            <button onClick={handleClickTestIntermedio}>Intermedio</button>
+                            <button onClick={handleClickTestDificil}>Difícil</button>
                         </div>
                     </div>
                 </div>

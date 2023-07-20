@@ -21,12 +21,15 @@ public class QuestEntity {
     private String image;
     private Integer id_difficulty;
     private Integer id_user;
+    @Column(length = 100)
+    private String answer;
 
-    public QuestEntity(String title, String content, String image, Integer id_difficulty, Integer id_user) {
+    public QuestEntity(String title, String content, String image, Integer id_difficulty, Integer id_user, String answer) {
         this.title = title;
         this.content = content;
         this.image = image;
         this.id_difficulty = id_difficulty;
         this.id_user = id_user;
+        this.answer = answer;
     }
 }

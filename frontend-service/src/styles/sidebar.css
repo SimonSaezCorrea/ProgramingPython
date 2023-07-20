@@ -12,7 +12,7 @@
     border-top: 0px;
     border-left: 0px;
     border-style: solid;
-    border-color: rgb(10, 39, 68);
+    border-color: rgb(6, 9, 32);
 }
 
 .border {
@@ -20,6 +20,7 @@
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
+    border-color: rgb(6, 9, 32);
 }
 
 .titulo {
@@ -36,6 +37,8 @@
 .titulo:hover{
     transform: scale(1.1);
     cursor: pointer;
+    -webkit-text-stroke: 2px brown;
+    text-stroke: 2px brown;
 }
 
 .contenedores-test {
@@ -51,6 +54,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    border-color: rgb(6, 9, 32);
 }
 
 .test label {

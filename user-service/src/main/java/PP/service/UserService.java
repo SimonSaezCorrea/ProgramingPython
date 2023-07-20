@@ -12,6 +12,10 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    public List<UserEntity> getConnect(){
+        return userRepository.getConnect();
+    }
+
     public UserEntity create(UserEntity userEntity) {
         return userRepository.save(userEntity);
     }
