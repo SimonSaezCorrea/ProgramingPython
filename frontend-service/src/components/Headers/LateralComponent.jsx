@@ -19,7 +19,7 @@ function HeaderComponent() {
         <div>
             <div class="sidebar">
                 <div class="border">
-                    <div class="titulo" onClick={handleClickMain}>PP</div>
+                    <label class="titulo" onClick={handleClickMain}>PP</label>
                 </div>
                 <div class="border">
                     <div class="contenedores-test">

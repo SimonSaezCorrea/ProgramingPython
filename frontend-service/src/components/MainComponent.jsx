@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import LateralComponent from "./Headers/LateralComponent";
 import "../styles/sidebar.css";
 import "../styles/main.css";
+import "../styles/test.css";
 import UserService from "../services/UserService";
 
 function MainComponents() {
