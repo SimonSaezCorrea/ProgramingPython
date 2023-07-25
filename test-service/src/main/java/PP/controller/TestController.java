@@ -53,16 +53,8 @@ public class TestController {
     }
 
     @GetMapping("/quest")
-    public ResponseEntity<List<QuestEntity>> getQuestsTests(){
-        List<QuestEntity> questEntities = questService.getAll();
-        Random rnd = new Random();
-        List<QuestEntity> questEntitiesFinal = new ArrayList<>();
-        int i;
-        for(i = 0; i < 4; i++){
-            int numRan = rnd.nextInt(questEntities.size());
-            questEntitiesFinal.add(questEntities.remove(numRan));
-            System.out.println(questEntitiesFinal.get(i).getImage());
-        }
-        return ResponseEntity.ok(questEntitiesFinal);
+    public ResponseEntity<List<QuestEntity>> createTest(){
+        List<QuestEntity> questEntities = questService.getTests();
+        return ResponseEntity.ok(questEntities);
     }
 }

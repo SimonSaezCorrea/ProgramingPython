@@ -2,3 +2,7 @@
 .idea/
 
 .vscode/
+
+frontend-service/src/components/Test.jsx
+
+frontend-service/src/styles/test_cositas.css

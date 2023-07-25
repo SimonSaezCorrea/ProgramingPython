@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import LateralComponent from "./Headers/LateralComponent";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 import persona from "../images/avatar.png";
 import UserService from "../services/UserService";
 import TestService from "../services/TestService";
+import ImageDisplay from "./ImageDisplay";
 
 function TestComponents() {
     const initialState = {
-        userEntity: [],
-        questEntity: [],
+        answer: "",
     };
 
+    const navigate = useNavigate();
+    const [questEntity, setQuestEntity] = useState([]);
+    const [userEntity, setUserEntity] = useState([]);
     const [input, setInput] = useState(initialState);
     const [answer_pregs, setAnswers] = useState({});
-    const [pregs, setPregs] = useState({});
-    const [selectedRadio, setSelectedRadio] = useState("pregunta-1");
-    const preguntas = ["pregunta-1", "pregunta-2", "pregunta-3", "pregunta-4"];
+    const [selectedRadio, setSelectedRadio] = useState("preg-1");
+    const preguntas = ["preg-1", "preg-2", "preg-3", "preg-4"];
     const [timer, setTimer] = useState(0);
-
+    const [currentImage, setCurrentImage] = useState();
 
     const changeAnswerHandler = (event) => {
         setInput({ ...input, answer: event.target.value });
+        setAnswers({ ...answer_pregs, [selectedRadio]: event.target.value });
     };
 
     const changeRadioNext = (event) => {
@@ -33,9 +37,6 @@ function TestComponents() {
 
         const nextAnswer = answer_pregs[nextQuestion] || "";
         setInput({ ...input, answer: nextAnswer });
-
-        const nextPreg = pregs[nextQuestion];
-        setInput({ ...input, preg: nextPreg });
     };
 
     const handleRadioChange = (event) => {
@@ -44,26 +45,6 @@ function TestComponents() {
 
         const nextAnswer = answer_pregs[event.target.value] || "";
         setInput({ ...input, answer: nextAnswer });
-
-        const nextPreg = pregs[event.target.value];
-        setInput({ ...input, preg: nextPreg });
-    };
-
-    const EnterAnswer = (e) => {
-        e.preventDefault();
-        swal({
-            title: "¿Está seguro de que desea enviar este proveedor?",
-            text: "Una vez enviado, no podrá ser modificado.",
-            icon: "warning",
-            buttons: ["Cancelar", "Enviar"],
-            dangerMode: true,
-        }).then((respuesta) => {
-            if (respuesta) {
-                swal("Proveedor registrado correctamente!", { icon: "success", timer: "3000" });
-            } else {
-                swal({ text: "Proveedor no registrado.", icon: "error" });
-            }
-        });
     };
 
     const startTimer = () => {
@@ -78,22 +59,27 @@ function TestComponents() {
     // Iniciamos el timer cuando el componente se monta
     useEffect(() => {
         UserService.getConnect().then((res) => {
+            //console.log("Response data User:", res.data);
+            setUserEntity(res.data);
             setInput({ ...input, userEntity: res.data });
         });
         TestService.getCantTestUser().then((res) => {
+            //console.log("Response data Quest:", res.data);
+            setQuestEntity(res.data);
             setInput({ ...input, questEntity: res.data });
         });
-        console.log(input.userEntity);
-        console.log(input.questEntity);
-        let i = 0;
-        input.questEntity.map((questEntity) => (
-            pregs[i] = questEntity,
-            i += 1));
         const intervalId = startTimer();
         return () => {
             clearInterval(intervalId);
         };
     }, []);
+
+    useEffect(() => {
+        const currentQuestionData = questEntity[preguntas.indexOf(selectedRadio)];
+        if (currentQuestionData) {
+            setCurrentImage(currentQuestionData.image);
+        }
+    }, [selectedRadio, questEntity]);
 
     // Función para formatear el tiempo en formato hh:mm:ss
     const formatTime = (time) => {
@@ -105,6 +91,64 @@ function TestComponents() {
             seconds
         ).padStart(2, "0")}`;
         return formattedTime;
+    };
+
+    const navigateHome = () => {
+        navigate("/home");
+    };
+
+    const mostrarAlerta = () => {
+        Swal.fire({
+            title: "¿Desea enviar?",
+            text: "No podra cambiar su resultado despues de ser enviado",
+            icon: "question",
+            showDenyButton: true,
+            confirmButtonText: "Confirmar",
+            confirmButtonColor: "rgb(68, 194, 68)",
+            denyButtonText: "Cancelar",
+            denyButtonColor: "rgb(190, 54, 54)",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log("test_easy -> ",userEntity[0].test_easy + 1);
+                let test = {
+                    title: "Test " + (userEntity[0].test_easy + 1),
+                    id_difficulty: 1,
+                    id_user: userEntity[0].id,
+                    time: formatTime(timer),
+                    id_quest1: questEntity[0].id,
+                    id_quest2: questEntity[1].id,
+                    id_quest3: questEntity[2].id,
+                    id_quest4: questEntity[3].id,
+                    qualification: 0,
+                };
+                let qualification1 = 10;
+                let qualification2 = 10;
+                let qualification3 = 10;
+                let qualification4 = 10;
+                console.group("-> ", questEntity[0].answer, "==", answer_pregs["preg-1"]);
+                console.group("-> ", questEntity[1].answer, "==", answer_pregs["preg-2"]);
+                console.group("-> ", questEntity[2].answer, "==", answer_pregs["preg-3"]);
+                console.group("-> ", questEntity[3].answer, "==", answer_pregs["preg-4"]);
+                if (questEntity[0].answer === answer_pregs["preg-1"]) {
+                    qualification1 = 70;
+                }
+                if (questEntity[1].answer === answer_pregs["preg-2"]) {
+                    qualification2 = 70;
+                }
+                if (questEntity[2].answer === answer_pregs["preg-3"]) {
+                    qualification3 = 70;
+                }
+                if (questEntity[3].answer === answer_pregs["preg-4"]) {
+                    qualification4 = 70;
+                }
+                test.qualification = (qualification1 + qualification2 + qualification3 + qualification4) / 4;
+
+                console.log(formatTime(timer));
+                console.log("TEST: ", test);
+                TestService.createTest(test);
+                navigateHome();
+            }
+        });
     };
 
     return (
@@ -128,7 +172,7 @@ function TestComponents() {
                         ))}
                     </div>
                     <div class="quest">
-                        <img class="image-preg" src={input.preg.image}></img>
+                        <ImageDisplay imageName={currentImage + ".png"} />
                         {/*<textarea readOnly class="question"></textarea>*/}
                     </div>
                     <div class="answer">
@@ -145,13 +189,15 @@ function TestComponents() {
                 <div class="perfil">
                     <div class="def-vertical">
                         <img class="imagen-persona" src={persona} alt="Ejemplo" />
-                        {input.userEntity.map((userEntity) => (
+                        {userEntity.map((userEntity) => (
                             <div key={userEntity.id}>
                                 <label class="nombre_usuario">{userEntity.name}</label>
                             </div>
                         ))}
 
-                        <button class="finalizar">Finalizar</button>
+                        <button class="finalizar" onClick={mostrarAlerta}>
+                            Finalizar
+                        </button>
                         <button class="cancelar">Cancelar</button>
                         <label class="timer">{formatTime(timer)}</label>
                     </div>

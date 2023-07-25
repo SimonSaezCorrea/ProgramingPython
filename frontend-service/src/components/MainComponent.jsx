@@ -5,6 +5,7 @@ import "../styles/sidebar.css";
 import "../styles/main.css";
 import "../styles/test.css";
 import UserService from "../services/UserService";
+import persona from "../images/avatar.png";
 
 function MainComponents() {
     const initialState = {
@@ -66,7 +67,7 @@ function MainComponents() {
                     </div>
                 </div>
                 <div class="der">
-                    <div class="bloque-imagen"></div>
+                <img class="imagen-persona-perfil" src={persona} alt="Ejemplo" />
                 </div>
             </div>
         </div>

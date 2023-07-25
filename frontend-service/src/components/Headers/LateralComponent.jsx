@@ -1,25 +1,30 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function HeaderComponent() {
     const navigate = useNavigate();
     const handleClickMain = () => {
         navigate("/home");
-    }
+    };
     const handleClickTestFacil = () => {
         navigate("/test");
-    }
+    };
     const handleClickTestIntermedio = () => {
         navigate("/test");
-    }
+    };
     const handleClickTestDificil = () => {
         navigate("/test");
-    }
+    };
+    const handleClickCreateTest = () => {
+        navigate("/create/test");
+    };
     return (
         <div>
             <div class="sidebar">
                 <div class="border">
-                    <label class="titulo" onClick={handleClickMain}>PP</label>
+                    <label class="titulo" onClick={handleClickMain}>
+                        PP
+                    </label>
                 </div>
                 <div class="border">
                     <div class="contenedores-test">
@@ -29,6 +34,12 @@ function HeaderComponent() {
                             <button onClick={handleClickTestIntermedio}>Intermedio</button>
                             <button onClick={handleClickTestDificil}>Difícil</button>
                         </div>
+                    </div>
+                </div>
+                <div class="border">
+                    <div class="test">
+                        <label></label>
+                        <button onClick={handleClickCreateTest}>Crear Test</button>
                     </div>
                 </div>
             </div>

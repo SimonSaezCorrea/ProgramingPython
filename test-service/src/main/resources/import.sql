@@ -1,42 +1,26 @@
 -- Difficulty
 
-insert into difficulty (id, score, title) values (1, 1, 'Facil');
-insert into difficulty (id, score, title) values (2, 2, 'Intermedio');
-insert into difficulty (id, score, title) values (3, 3, 'Difícil');
+insert into difficulty (score, title) values (1, 'Facil');
+insert into difficulty (score, title) values (2, 'Intermedio');
+insert into difficulty (score, title) values (3, 'Difícil');
 
 -- Quest
 
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (1, '', 1, 5 ,'preg-1', 'Pregunta ???', '19');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (2, '', 1, 5 ,'preg-2', 'Pregunta ???', '16');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (3, '', 1, 5 ,'preg-3', 'Pregunta ???', '13');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (4, '', 1, 5 ,'preg-4', 'Pregunta ???', '6');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (5, '', 2, 1 ,'preg-5.', 'Pregunta ???', '-70');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (6, '', 2, 1 ,'preg-6', 'Pregunta ???', '292');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (7, '', 2, 1 ,'preg-7', 'Pregunta ???', '36');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (8, '', 2, 1 ,'preg-8', 'Pregunta ???', '568');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (9, '', 3, 9 ,'preg-9', 'Pregunta ???', '17');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (10, '', 3, 9 ,'preg-10', 'Pregunta ???', 'Aa/b%cHaWbScAaSb/c&a!b');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (11, '', 3, 2 ,'preg-11', 'Pregunta ???', 'Aaa');
-insert into quest (id, content, id_difficulty, id_user, image, title, answer) values (12, '', 3, 1 ,'preg-12', 'Pregunta ???', '233');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 1, 5 ,'preg-1', 'Pregunta ???', '19');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 1, 5 ,'preg-2', 'Pregunta ???', '16');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 1, 5 ,'preg-3', 'Pregunta ???', '13');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 1, 5 ,'preg-4', 'Pregunta ???', '6');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 2, 1 ,'preg-5', 'Pregunta ???', '-70');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 2, 1 ,'preg-6', 'Pregunta ???', '292');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 2, 1 ,'preg-7', 'Pregunta ???', '36');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 2, 1 ,'preg-8', 'Pregunta ???', '568');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 9 ,'preg-9', 'Pregunta ???', '17');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 9 ,'preg-10', 'Pregunta ???', 'Aa/b%cHaWbScAaSb/c&a!b');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 2 ,'preg-11', 'Pregunta ???', 'Aaa');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 1 ,'preg-12', 'Pregunta ???', '233');
 
 -- Test
 
-insert into test (id, id_difficulty, id_user, time, title) values (1, 1, 9, '00:4:47', 'Test 1 - Fácil');
-insert into test (id, id_difficulty, id_user, time, title) values (2, 2, 21, '00:32:4', 'Test 1 - Intermedio');
-insert into test (id, id_difficulty, id_user, time, title) values (3, 3, 19, '01:03:22', 'test 1 - Difícil');
-
-
--- Test_Quest
-
-insert into test_quest (id, id_test, id_quest, qualification) values (1, 1, 1, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (2, 1, 2, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (3, 1, 3, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (4, 1, 4, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (5, 2, 5, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (6, 2, 6, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (7, 2, 7, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (8, 2, 8, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (9, 3, 9, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (10, 3, 10, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (11, 3, 11, 7);
-insert into test_quest (id, id_test, id_quest, qualification) values (12, 3, 12, 7);
+insert into test (id_difficulty, id_user, time, title, id_quest1, id_quest2, id_quest3, id_quest4, qualification) values (1, 9, '00:4:47', 'Test 1 - Fácil', 1, 2, 3, 4, 70);
+insert into test (id_difficulty, id_user, time, title, id_quest1, id_quest2, id_quest3, id_quest4, qualification) values (2, 21, '00:32:4', 'Test 1 - Intermedio', 5, 6, 7, 8,  70);
+insert into test (id_difficulty, id_user, time, title, id_quest1, id_quest2, id_quest3, id_quest4, qualification) values (3, 19, '01:03:22', 'test 1 - Difícil', 9, 10, 11, 12, 70);
