@@ -37,9 +37,9 @@ public class QuestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<QuestEntity> getById(@PathVariable("id") Integer id) {
-        QuestEntity questEntity = questService.getById(id);
-        return ResponseEntity.ok(questEntity);
+    public ResponseEntity<List<QuestEntity>> getById(@PathVariable("id") Integer id) {
+        List<QuestEntity> questEntities = questService.getById(id);
+        return ResponseEntity.ok(questEntities);
     }
 
     @PostMapping("/{id}")

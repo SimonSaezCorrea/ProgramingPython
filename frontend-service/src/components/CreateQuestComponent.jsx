@@ -68,6 +68,7 @@ function CreateQuestComponent() {
                 console.log(input.title);
                 let imageDiv = input.image.split("\\");
                 let selectImage = imageDiv[imageDiv.length - 1];
+                selectImage = selectImage.split(".")[0];
                 console.log(selectImage);
                 console.log(input.id_difficulty);
                 console.log(user[0].id, user[0].name);

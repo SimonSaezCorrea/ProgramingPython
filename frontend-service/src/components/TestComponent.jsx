@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LateralComponent from "./Headers/LateralComponent";
 import Swal from "sweetalert2";
 import persona from "../images/avatar.png";
@@ -11,10 +11,11 @@ function TestComponents() {
     const initialState = {
         answer: "",
     };
-
+    const { difficulty } = useParams();
     const navigate = useNavigate();
     const [questEntity, setQuestEntity] = useState([]);
     const [userEntity, setUserEntity] = useState([]);
+    const [NewTest, setNewTest] = useState({});
     const [input, setInput] = useState(initialState);
     const [answer_pregs, setAnswers] = useState({});
     const [selectedRadio, setSelectedRadio] = useState("preg-1");
@@ -58,13 +59,14 @@ function TestComponents() {
 
     // Iniciamos el timer cuando el componente se monta
     useEffect(() => {
+        console.log("primero");
         UserService.getConnect().then((res) => {
-            //console.log("Response data User:", res.data);
+            console.log("Response data User:", res.data);
             setUserEntity(res.data);
             setInput({ ...input, userEntity: res.data });
         });
-        TestService.getCantTestUser().then((res) => {
-            //console.log("Response data Quest:", res.data);
+        TestService.getCantTestUser(difficulty).then((res) => {
+            console.log("Response data Quest:", res.data);
             setQuestEntity(res.data);
             setInput({ ...input, questEntity: res.data });
         });
@@ -75,8 +77,10 @@ function TestComponents() {
     }, []);
 
     useEffect(() => {
+        console.log("segundo");
         const currentQuestionData = questEntity[preguntas.indexOf(selectedRadio)];
         if (currentQuestionData) {
+            console.log("current: ", currentQuestionData)
             setCurrentImage(currentQuestionData.image);
         }
     }, [selectedRadio, questEntity]);
@@ -93,11 +97,12 @@ function TestComponents() {
         return formattedTime;
     };
 
-    const navigateHome = () => {
-        navigate("/home");
+    const navigateTestSucefull = (test) => {
+        console.log(test);
+        navigate(`/test/sucefull/${encodeURIComponent(test)}`);
     };
 
-    const mostrarAlerta = () => {
+    const mostrarAlertaFinalizar = () => {
         Swal.fire({
             title: "¿Desea enviar?",
             text: "No podra cambiar su resultado despues de ser enviado",
@@ -110,9 +115,9 @@ function TestComponents() {
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log("test_easy -> ",userEntity[0].test_easy + 1);
-                let test = {
+                let test_import = {
                     title: "Test " + (userEntity[0].test_easy + 1),
-                    id_difficulty: 1,
+                    id_difficulty: difficulty,
                     id_user: userEntity[0].id,
                     time: formatTime(timer),
                     id_quest1: questEntity[0].id,
@@ -121,6 +126,21 @@ function TestComponents() {
                     id_quest4: questEntity[3].id,
                     qualification: 0,
                 };
+                const test = {
+                    title: "Test " + (userEntity[0].test_easy + 1),
+                    id_difficulty: difficulty,
+                    user: userEntity[0],
+                    time: formatTime(timer),
+                    quest1: questEntity[0],
+                    quest2: questEntity[1],
+                    quest3: questEntity[2],
+                    quest4: questEntity[3],
+                    answer1: answer_pregs["preg-1"],
+                    answer2: answer_pregs["preg-2"],
+                    answer3: answer_pregs["preg-3"],
+                    answer4: answer_pregs["preg-4"],
+                    qualification: 0,
+                }
                 let qualification1 = 10;
                 let qualification2 = 10;
                 let qualification3 = 10;
@@ -141,12 +161,28 @@ function TestComponents() {
                 if (questEntity[3].answer === answer_pregs["preg-4"]) {
                     qualification4 = 70;
                 }
+                test_import.qualification = (qualification1 + qualification2 + qualification3 + qualification4) / 4;
                 test.qualification = (qualification1 + qualification2 + qualification3 + qualification4) / 4;
-
                 console.log(formatTime(timer));
                 console.log("TEST: ", test);
-                TestService.createTest(test);
-                navigateHome();
+                const testComoTexto = JSON.stringify(test);
+                TestService.createTest(test_import);
+                navigateTestSucefull(testComoTexto);
+            }
+        });
+    };
+    const mostrarAlertaCancelar = () => {
+        Swal.fire({
+            title: "¿Deseas cancelar el test?",
+            icon: "question",
+            showDenyButton: true,
+            confirmButtonText: "Confirmar",
+            confirmButtonColor: "rgb(68, 194, 68)",
+            denyButtonText: "Cancelar",
+            denyButtonColor: "rgb(190, 54, 54)",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate("/home ");;
             }
         });
     };
@@ -195,10 +231,10 @@ function TestComponents() {
                             </div>
                         ))}
 
-                        <button class="finalizar" onClick={mostrarAlerta}>
+                        <button class="finalizar" onClick={mostrarAlertaFinalizar}>
                             Finalizar
                         </button>
-                        <button class="cancelar">Cancelar</button>
+                        <button class="cancelar" onClick={mostrarAlertaCancelar}>Cancelar</button>
                         <label class="timer">{formatTime(timer)}</label>
                     </div>
                 </div>

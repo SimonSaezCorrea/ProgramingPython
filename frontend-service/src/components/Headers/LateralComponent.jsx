@@ -1,22 +1,128 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function HeaderComponent() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const rutaActual = location.pathname;
+
+    const compararSucceful = () => {
+        let rutaDividida = rutaActual.split("/");
+
+        let rutaJunta = "/" + rutaDividida[1] + "/" + rutaDividida[2];
+
+        if ("/test/sucefull" === rutaJunta) {
+            return true;
+        }
+        return false
+    };
+    const compararCancelar = () => {
+        let rutaDividida = rutaActual.split("/");
+
+        let rutaJunta = "/" + rutaDividida[1];
+
+        if ("/test" === rutaJunta) {
+            return true;
+        }
+        return false
+    };
+
+    const esTest = (direccion) => {
+        let rutaDividida = rutaActual.split("/");
+        let rutaJunta = "/" + rutaDividida[1];
+        if ("/test" === rutaJunta) {
+            return true;
+        }
+        return false
+    }
+
+    const mostrarAlertaSucceful = (direccion) => {
+        Swal.fire({
+            title: "¿Revisión Lista?",
+            text: "Podrá volver a revisarlo",
+            icon: "question",
+            showDenyButton: true,
+            confirmButtonText: "Confirmar",
+            confirmButtonColor: "rgb(68, 194, 68)",
+            denyButtonText: "Cancelar",
+            denyButtonColor: "rgb(190, 54, 54)",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate(direccion);
+            }
+        });
+    };
+    const mostrarAlertaCancelar = (direccion) => {
+        Swal.fire({
+            title: "¿Deseas cancelar el test?",
+            icon: "question",
+            showDenyButton: true,
+            confirmButtonText: "Confirmar",
+            confirmButtonColor: "rgb(68, 194, 68)",
+            denyButtonText: "Cancelar",
+            denyButtonColor: "rgb(190, 54, 54)",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate(direccion);
+                if(esTest(direccion)){
+                    handleReloadPage();
+                }
+            }
+        });
+    };
+
+    const handleReloadPage = () => {
+        window.location.reload();
+    };
+
     const handleClickMain = () => {
-        navigate("/home");
+        if (compararSucceful()) {
+            mostrarAlertaSucceful("/home");
+        } else if (compararCancelar()) {
+            mostrarAlertaCancelar("/home");
+        } else {
+            navigate("/home");
+        }
     };
     const handleClickTestFacil = () => {
-        navigate("/test");
+        if (compararSucceful()) {
+            mostrarAlertaSucceful("/test/1");
+        } else if (compararCancelar()) {
+            mostrarAlertaCancelar("/test/1");
+        } else {
+            navigate("/test/1");
+            handleReloadPage();
+        }
     };
     const handleClickTestIntermedio = () => {
-        navigate("/test");
+        if (compararSucceful()) {
+            mostrarAlertaSucceful("/test/2");
+        } else if (compararCancelar()) {
+            mostrarAlertaCancelar("/test/2");
+        } else {
+            navigate("/test/2");
+            handleReloadPage();
+        }
     };
     const handleClickTestDificil = () => {
-        navigate("/test");
+        if (compararSucceful()) {
+            mostrarAlertaSucceful("/test/3");
+        } else if (compararCancelar()) {
+            mostrarAlertaCancelar("/test/3");
+        } else {
+            navigate("/test/3");
+            handleReloadPage();
+        }
     };
     const handleClickCreateTest = () => {
-        navigate("/create/test");
+        if (compararSucceful()) {
+            mostrarAlertaSucceful("/create/test");
+        } else if (compararCancelar()) {
+            mostrarAlertaCancelar("/create/test");
+        } else {
+            navigate("/create/test");
+        }
     };
     return (
         <div>

@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/test")
@@ -29,15 +27,17 @@ public class TestController {
     }
 
     @PostMapping()
-    public ResponseEntity<TestEntity> create(@RequestBody TestEntity testEntity){
+    public ResponseEntity<List<TestEntity>> create(@RequestBody TestEntity testEntity){
+        List<TestEntity> testEntities = new ArrayList<>();
+        testEntities.add(testEntity);
         testService.create(testEntity);
-        return ResponseEntity.ok(testEntity);
+        return ResponseEntity.ok(testEntities);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TestEntity> getById(@PathVariable("id") Integer id) {
-        TestEntity testEntitie = testService.getById(id);
-        return ResponseEntity.ok(testEntitie);
+    public ResponseEntity<List<TestEntity>> getById(@PathVariable("id") Integer id) {
+        List<TestEntity> testEntities = testService.getById(id);
+        return ResponseEntity.ok(testEntities);
     }
 
     @PostMapping("/{id}")
@@ -52,9 +52,14 @@ public class TestController {
         return ResponseEntity.ok(testEntity);
     }
 
-    @GetMapping("/quest")
-    public ResponseEntity<List<QuestEntity>> createTest(){
-        List<QuestEntity> questEntities = questService.getTests();
+    @GetMapping("/quest/difficulty/{difficulty}")
+    public ResponseEntity<List<QuestEntity>> createTest(@PathVariable("difficulty") Integer difficulty){
+        List<QuestEntity> questEntities = questService.getTests(difficulty);
+        return ResponseEntity.ok(questEntities);
+    }
+    @GetMapping("/quest/image/{id}")
+    public ResponseEntity<List<QuestEntity>> getImage(@PathVariable Integer id){
+        List<QuestEntity> questEntities = questService.getById(id);
         return ResponseEntity.ok(questEntities);
     }
 }

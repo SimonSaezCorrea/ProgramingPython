@@ -21,12 +21,12 @@ public class QuestService {
         return questRepository.findAll();
     }
 
-    public QuestEntity getById(Integer id){
-        return questRepository.getById(id);
+    public List<QuestEntity> getById (Integer id){
+        return questRepository.getByIdModify(id);
     }
 
     public QuestEntity delete(Integer id){
-        QuestEntity questEntity = getById(id);
+        QuestEntity questEntity = getById(id).get(0);
         questRepository.deleteById(id);
         return questEntity;
     }
@@ -36,8 +36,11 @@ public class QuestService {
         return questRepository.save(questEntity);
     }
 
-    public List<QuestEntity> getTests(){
-        List<QuestEntity> questEntities = getAll();
+    public List<QuestEntity> getAllDifficulty(Integer difficulty){
+        return questRepository.getAllDifficulty(difficulty);
+    }
+    public List<QuestEntity> getTests(Integer difficulty){
+        List<QuestEntity> questEntities = getAllDifficulty(difficulty);
         Random rnd = new Random();
         List<QuestEntity> questEntitiesFinal = new ArrayList<>();
         int i;

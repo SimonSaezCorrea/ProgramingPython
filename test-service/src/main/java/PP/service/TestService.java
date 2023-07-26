@@ -1,5 +1,6 @@
 package PP.service;
 
+import PP.entity.QuestEntity;
 import PP.entity.TestEntity;
 import PP.model.UserEntity;
 import PP.repository.TestRepository;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -38,12 +41,12 @@ public class TestService {
         return testRepository.findAll();
     }
 
-    public TestEntity getById(Integer id){
-        return testRepository.getById(id);
+    public List<TestEntity> getById(Integer id){
+        return testRepository.getByIdModify(id);
     }
 
     public TestEntity delete(Integer id){
-        TestEntity testEntity = getById(id);
+        TestEntity testEntity = getById(id).get(0);
         testRepository.deleteById(id);
         return testEntity;
     }
