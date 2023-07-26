@@ -6,6 +6,7 @@ import "../styles/main.css";
 import "../styles/test.css";
 import UserService from "../services/UserService";
 import persona from "../images/avatar.png";
+import Swal from "sweetalert2";
 
 function MainComponents() {
     const initialState = {
@@ -20,7 +21,13 @@ function MainComponents() {
 
     const navigate = useNavigate();
     const handleClickTestSucefull = () => {
-        navigate("/test-sucefull");
+        Swal.fire({
+            title: "En Camino",
+            text: "Estamos trabajando para crear la función",
+            icon: "info",
+            confirmButtonText: "Ok"
+        });
+        //navigate("/test/sucefull");
     };
     return (
         <div>
@@ -49,17 +56,17 @@ function MainComponents() {
                             <div class="text" key={userEntity.id}>
                                 <div className="input-container">
                                     <label>Fácil:</label>
-                                    <input class="text" type="text" readOnly value={userEntity.test_easy}/>
+                                    <input class="text" type="text" readOnly value={userEntity.test_easy} />
                                     <button onClick={handleClickTestSucefull}>Ver</button>
                                 </div>
                                 <div className="input-container">
                                     <label>Intermedio:</label>
-                                    <input class="text" type="text" readOnly value={userEntity.test_medium}/>
+                                    <input class="text" type="text" readOnly value={userEntity.test_medium} />
                                     <button onClick={handleClickTestSucefull}>Ver</button>
                                 </div>
                                 <div className="input-container">
                                     <label>Difícil:</label>
-                                    <input class="text" type="text" readOnly value={userEntity.test_hard}/>
+                                    <input class="text" type="text" readOnly value={userEntity.test_hard} />
                                     <button onClick={handleClickTestSucefull}>Ver</button>
                                 </div>
                             </div>
@@ -67,7 +74,7 @@ function MainComponents() {
                     </div>
                 </div>
                 <div class="der">
-                <img class="imagen-persona-perfil" src={persona} alt="Ejemplo" />
+                    <img class="imagen-persona-perfil" src={persona} alt="Ejemplo" />
                 </div>
             </div>
         </div>

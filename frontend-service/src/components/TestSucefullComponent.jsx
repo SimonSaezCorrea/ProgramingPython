@@ -10,9 +10,9 @@ function TestSucefullComponent() {
     const test = JSON.parse(decodeURIComponent(testComoTexto));
     console.log("TEEEEEEXTO: ", test);
 
-    const answer_correct = [test.quest1.answer, test.quest2.answer, test.quest3.answer, test.quest4.answer];
+    const answer_correct = [test.quest1_answer, test.quest2_answer, test.quest3_answer, test.quest4_answer];
     const answer = [test.answer1, test.answer2, test.answer3, test.answer4];
-    const preguntas = [test.quest1.image, test.quest2.image, test.quest3.image, test.quest4.image];
+    const preguntas = [test.quest1_image, test.quest2_image, test.quest3_image, test.quest4_image];
     const preguntas_mostrar = ["preg 1", "preg 2", "preg 3", "preg 4"];
 
     const navigate = useNavigate();
@@ -139,7 +139,7 @@ function TestSucefullComponent() {
                 <div class="perfil">
                     <div class="def-vertical">
                         <img class="imagen-persona" src={persona} alt="Ejemplo" />
-                        <label class="nombre_usuario">{test.user.name}</label>
+                        <label class="nombre_usuario">{test.user}</label>
 
                         <button
                             style={{

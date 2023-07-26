@@ -15,7 +15,7 @@ insert into quest (content, id_difficulty, id_user, image, title, answer) values
 insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 2, 1 ,'preg-7', 'Pregunta ???', '36');
 insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 2, 1 ,'preg-8', 'Pregunta ???', '568');
 insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 9 ,'preg-9', 'Pregunta ???', '17');
-insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 9 ,'preg-10', 'Pregunta ???', 'Aa/b%cHaWbScAaSb/c&a!b');
+insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 9 ,'preg-10', 'Pregunta ???', 'AaTb2c1a1bHcWaSbAcSaTb');
 insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 2 ,'preg-11', 'Pregunta ???', 'Aaa');
 insert into quest (content, id_difficulty, id_user, image, title, answer) values ('', 3, 1 ,'preg-12', 'Pregunta ???', '233');
 
