@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
+import UserService from "../../services/UserService";
+
 
 function HeaderComponent() {
     const navigate = useNavigate();
@@ -124,6 +126,11 @@ function HeaderComponent() {
             navigate("/create/test");
         }
     };
+    const handleClickLogout = () => {
+        if(UserService.logout()){
+            navigate("/");
+        }
+    };
     return (
         <div>
             <div class="sidebar">
@@ -146,6 +153,13 @@ function HeaderComponent() {
                     <div class="test">
                         <label></label>
                         <button onClick={handleClickCreateTest}>Crear Test</button>
+                    </div>
+                </div>
+
+                <div class="border-down">
+                    <div class="test">
+                        <label></label>
+                        <button onClick={handleClickLogout}>Logout</button>
                     </div>
                 </div>
             </div>

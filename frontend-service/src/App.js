@@ -6,13 +6,14 @@ import TestComponent from "./components/TestComponent";
 import TestSucefullComponent from "./components/TestSucefullComponent";
 import CreateQuestComponent from "./components/CreateQuestComponent"
 import Test from "./components/Test";
+import LoginComponent from "./components/LoginComponent"
 
 function App() {
     return (
         <div>
             <Router>
                 <Routes>
-                    <Route path="/" element={<MainComponent />} />
+                    <Route path="/" element={<LoginComponent />} />
                     <Route path="/home" element={<MainComponent />} />
                     <Route path="/test/:difficulty" element={<TestComponent />} />
                     <Route path="/test/sucefull/:testComoTexto" element={<TestSucefullComponent />} />

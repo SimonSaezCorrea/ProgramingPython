@@ -10,12 +10,13 @@ import Swal from "sweetalert2";
 
 function MainComponents() {
     const initialState = {
-        userEntity: [],
-    };
+
+    }
+    const [userEntity, setUserEntity] = useState([]);
     const [input, setInput] = useState(initialState);
     useEffect(() => {
         UserService.getConnect().then((res) => {
-            setInput({ ...input, userEntity: res.data }); // Actualizar el estado correctamente
+            setUserEntity(res.data);
         });
     }, []);
 
@@ -29,6 +30,11 @@ function MainComponents() {
         });
         //navigate("/test/sucefull");
     };
+
+    if(userEntity[0] === undefined){
+        return <div>Cargando...</div>;
+    }
+
     return (
         <div>
             <LateralComponent></LateralComponent>
@@ -43,7 +49,7 @@ function MainComponents() {
                             </div>
                         </div>
                         <div class="izq-arr-der">
-                            {input.userEntity.map((userEntity) => (
+                            {userEntity.map((userEntity) => (
                                 <div class="text" key={userEntity.id}>
                                     <input type="text" readOnly value={userEntity.name}></input>
                                     <input type="text" readOnly value={userEntity.correo}></input>
@@ -52,7 +58,7 @@ function MainComponents() {
                         </div>
                     </div>
                     <div class="izq-aba">
-                        {input.userEntity.map((userEntity) => (
+                        {userEntity.map((userEntity) => (
                             <div class="text" key={userEntity.id}>
                                 <div className="input-container">
                                     <label>Fácil:</label>

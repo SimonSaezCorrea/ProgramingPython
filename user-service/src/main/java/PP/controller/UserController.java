@@ -48,14 +48,27 @@ public class UserController {
     @GetMapping("/connect")
     public ResponseEntity<List<UserEntity>> getConnect() {
         List<UserEntity> userEntitie = userService.getConnect();
-        userEntitie.stream().forEach((e)->{
-            System.out.println("id: " + e.getId());
-            System.out.println("name: " + e.getName());
-            System.out.println("password: " + e.getPassword());
-            System.out.println("correo: " + e.getCorreo());
-            System.out.println("connect: " + e.getConnect());
-            System.out.println("--------------------");
-        });
         return ResponseEntity.ok(userEntitie);
+    }
+    @GetMapping("/connect/{user}/{pass}")
+    public ResponseEntity<Boolean> connect(@PathVariable("user") String user, @PathVariable("pass") String pass){
+        UserEntity userEntity = userService.getByName(user);
+        if(userEntity==null){
+            System.out.println("No existe usuario");
+            return ResponseEntity.ok(false);
+        }
+
+        if(!userEntity.getPassword().equals(pass)){
+            System.out.println("Contraseña incorrecta");
+            return ResponseEntity.ok(false);
+        }
+        System.out.println("Ingreso");
+        userService.connect(userEntity);
+        return ResponseEntity.ok(true);
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<Boolean> logout() {
+        return ResponseEntity.ok(userService.logout());
     }
 }

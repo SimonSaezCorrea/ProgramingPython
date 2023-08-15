@@ -24,6 +24,15 @@
     border-color: rgb(6, 9, 32);
 }
 
+.border-down {
+    background-color: rgb(15, 60, 105);
+    border-style: solid;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-color: rgb(6, 9, 32);
+}
+
 .titulo {
     margin-left: 30%;
     background-color: rgb(15, 60, 105);

@@ -15,7 +15,6 @@ function TestComponents() {
     const navigate = useNavigate();
     const [questEntity, setQuestEntity] = useState([]);
     const [userEntity, setUserEntity] = useState([]);
-    const [NewTest, setNewTest] = useState({});
     const [input, setInput] = useState(initialState);
     const [answer_pregs, setAnswers] = useState({});
     const [selectedRadio, setSelectedRadio] = useState("preg-1");

@@ -37,4 +37,22 @@ public class UserService {
         userRepository.deleteById(id);
         return userRepository.save(userEntity);
     }
+
+    public void connect(UserEntity user){
+        UserEntity newUser = user;
+        newUser.setConnect(1);
+        update(newUser, user.getId());
+    }
+
+    public boolean logout(){
+       UserEntity userEntity = getConnect().get(0);
+       UserEntity newUserEntity = userEntity;
+       newUserEntity.setConnect(0);
+       update(newUserEntity, userEntity.getId());
+       return true;
+    }
+
+    public UserEntity getByName(String user){
+        return userRepository.getByName(user).get(0);
+    }
 }

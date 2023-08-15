@@ -1,6 +1,6 @@
 insert into userpp (name, password, correo, connect, test_easy, test_medium, test_hard) values ('Buffy Favel', 'kQ7~/e''OL', 'test1@gmail.com', 0, 1, 0, 0);
 insert into userpp (name, password, correo, connect, test_easy, test_medium, test_hard) values ('Annissa Crumpton', 'dU5>jcHymoQop', 'test2@gmail.com', 0, 0, 1, 0);
-insert into userpp (name, password, correo, connect, test_easy, test_medium, test_hard) values ('Franni Turbefield', 'zQ7.uJyk', 'test3@gmail.com', 1, 0, 0, 1);
+insert into userpp (name, password, correo, connect, test_easy, test_medium, test_hard) values ('Franni Turbefield', 'zQ7.uJyk', 'test3@gmail.com', 0, 0, 0, 1);
 insert into userpp (name, password, correo, connect, test_easy, test_medium, test_hard) values ('Emanuele Haston', 'yW9#Xg}a*', 'test4@gmail.com', 0, 0, 0, 0);
 insert into userpp (name, password, correo, connect, test_easy, test_medium, test_hard) values ('Lauraine Klosa', 'zM0_vH>N', 'test5@gmail.com', 0, 0, 0, 0);
 insert into userpp (name, password, correo, connect, test_easy, test_medium, test_hard) values ('Annis Mayers', 'sI1_{Mz59', 'test6@gmail.com', 0, 0, 0, 0);
